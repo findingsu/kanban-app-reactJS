@@ -1,14 +1,16 @@
-import HandleCards from "./assets/HandleCards";
-import "./Styles.css";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import SetBoard from "./kanban/Board";
+import HandleCards from "./cards/HandleCards";
+import "./Styles.css";
 
 export default function App() {
   return (
-    <div className="App">
+    <>
       <DndProvider backend={HTML5Backend}>
+        <SetBoard />
         <HandleCards />
       </DndProvider>
-    </div>
+    </>
   );
 }
