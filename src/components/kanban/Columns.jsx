@@ -1,5 +1,5 @@
 import React from "react";
-import DragCard from "../cards/DragCard";
+import DragCard from "../components/cards/DragCard";
 
 export default function SetColumns({ title }) {
   return (
