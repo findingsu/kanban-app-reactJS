@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { HandleTaskInput } from "../tasks/TaskInput.jsx";
-import { HandleTaskList } from "../tasks/TaskList.jsx";
+import { HandleTaskInput } from "../../tasks/TaskInput.jsx";
+import { HandleTaskList } from "../../tasks/TaskList.jsx";
 
 export default function HandleCards() {
   const [tasks, setTasks] = useState([]);
