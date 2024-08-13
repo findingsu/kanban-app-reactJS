@@ -1,8 +1,7 @@
-import React from "react";
+import HandleTasks from "../tasks/HandleTasks";
 import { useDrag } from "react-dnd";
-import HandleCards from "./HandleCards";
 
-export default function DragCard({ className }) {
+export default function DragCard() {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "card",
     collect: (monitor) => ({
@@ -13,14 +12,12 @@ export default function DragCard({ className }) {
   return (
     <div
       ref={drag}
-      className={className}
+      className="card-container"
       style={{
-        border: isDragging ? "5px solid pink" : "1px solid #ddd",
-        opacity: isDragging ? 0.5 : 1,
-        cursor: "move",
+        border: isDragging && "5px solid pink",
       }}
     >
-      <HandleCards />
+      <HandleTasks />
     </div>
   );
 }

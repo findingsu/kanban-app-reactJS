@@ -1,5 +1,5 @@
 import React from "react";
-import SetColumns from "./Columns";
+import SetColumns from "./Columns.jsx";
 
 export default function SetBoard() {
   return (
