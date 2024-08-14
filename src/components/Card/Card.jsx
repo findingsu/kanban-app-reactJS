@@ -1,12 +1,13 @@
-import "../../styles/cards.css";
+import HandleTasks from "../Tasks/HandleTasks";
+import "./styles/cards.css";
 
-export default function Card({ id, onDelete, children }) {
+export default function Card({ id, onDelete }) {
   return (
     <div className="card">
       <button onClick={() => onDelete(id)} className="delete-card-button">
         x
       </button>
-      {children}
+      <HandleTasks />
     </div>
   );
 }

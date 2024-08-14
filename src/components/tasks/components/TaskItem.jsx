@@ -1,13 +1,13 @@
 export function TaskItem({ task, tasks, setTasks }) {
   const handleToggleTask = () => {
-    const updatedTasks = tasks.map((t) =>
-      t.id === task.id ? { ...t, completed: !t.completed } : t
+    const updatedTasks = tasks.map((item) =>
+      item.id === task.id ? { ...item, completed: !item.completed } : item
     );
     setTasks(updatedTasks);
   };
 
   const deleteItem = () => {
-    setTasks(tasks.filter((t) => t.id !== task.id));
+    setTasks(tasks.filter((item) => item.id !== task.id));
   };
 
   return (

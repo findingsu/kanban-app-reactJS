@@ -1,13 +1,22 @@
 import React from "react";
-import Card from "../cards/Card";
-import HandleTasks from "../tasks/HandleTasks";
-import "../../styles/cards.css";
+import Card from "../Card/Card";
+import HandleTasks from "../Tasks/HandleTasks";
+import "./styles/board.css";
 
-export default function Column({ title, cards, onAddCard, onDeleteCard }) {
+export default function Column({
+  title,
+  cards,
+  onAddCard,
+  onDeleteCard,
+  onDeleteColumn,
+}) {
   return (
     <div className="kanban-column">
       <div className="column-header">
         <h2>{title}</h2>
+        <button onClick={onDeleteColumn} className="delete-column-button">
+          &times;
+        </button>
       </div>
       <div className="cards-list">
         {cards.map((card) => (

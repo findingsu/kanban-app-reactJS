@@ -1,10 +1,9 @@
-import React from "react";
-import HandleTasks from "../tasks/HandleTasks";
 import { useDrag } from "react-dnd";
 
-export default function DragCard({ id, deleteCard }) {
+export default function DragCard({ id, children }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "card",
+    item: { id },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
@@ -19,10 +18,7 @@ export default function DragCard({ id, deleteCard }) {
         marginBottom: "10px",
       }}
     >
-      <HandleTasks />
-      <button onClick={() => deleteCard(id)} className="delete-card-button">
-        x
-      </button>
+      {children}
     </div>
   );
 }
