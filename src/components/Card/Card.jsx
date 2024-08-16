@@ -1,12 +1,15 @@
-import HandleTasks from "../Tasks/HandleTasks";
-import "./styles/cards.css";
+// Card.jsx
+import HandleTasks from "../Tasks/HandleTasks.jsx";
+import DeleteCardButton from "./DeleteCardBtn.jsx";
+import "./cards.css";
 
-export default function Card({ id, onDelete }) {
+export default function Card({ id, setCards, cards }) {
   return (
-    <div className="card">
-      <button onClick={() => onDelete(id)} className="delete-card-button">
-        x
-      </button>
+    <div className="card" key={id}>
+      <div className="card-title">
+        <span>Card {id}</span>
+        <DeleteCardButton cardId={id} cards={cards} setCards={setCards} />
+      </div>
       <HandleTasks />
     </div>
   );
