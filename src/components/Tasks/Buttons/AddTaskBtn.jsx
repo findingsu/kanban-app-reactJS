@@ -1,4 +1,8 @@
-export function AddTasksButton({ tasks, setTasks, newTask, setInputValue }) {
+import { useContext } from "react";
+import { TasksContext } from "../../../Contexts/ComponentContexts";
+
+export function AddTasksButton() {
+  const { newTask, setInputValue, tasks, setTasks } = useContext(TasksContext);
   const addTask = () => {
     if (newTask !== "") {
       const task = {

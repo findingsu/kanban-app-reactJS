@@ -1,7 +1,7 @@
-import { DndProvider } from "react-dnd";
+// import { DndProvider } from "react-dnd";
 import Board from "../components/Board/Board.jsx";
 
-import "./App.css";
+import "../styles/App.css";
 
 export default function App() {
   return (
