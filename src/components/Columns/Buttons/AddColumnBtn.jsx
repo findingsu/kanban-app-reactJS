@@ -15,9 +15,9 @@ export default function AddColumnButton() {
     nextColumnId.current += 1;
   };
 
-  return (
+  return columns.length < 3 ? (
     <button onClick={handleAddColumn} className="add-column-button">
       Add Column
     </button>
-  );
+  ) : null;
 }
