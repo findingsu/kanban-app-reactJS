@@ -1,23 +1,21 @@
-import React, { useState } from "react";
-import { TaskInput } from "./TasksContainer/TaskInput.jsx";
-import { AddTasksButton } from "./Buttons/AddTaskBtn.jsx";
-import { TasksContext } from "../../Contexts/ComponentContexts.jsx";
-import { TaskItem } from "./TasksContainer/TaskItem.jsx";
+import React from "react";
+import { useTasks } from "./UseTasks";
+import { TasksContext } from "../../Contexts/ComponentContexts";
+import TaskInput from "./TasksContainer/TaskInput";
+import TaskList from "./TasksContainer/TaskList";
+import { AddTasksButton } from "./Buttons/AddTaskBtn";
 
 export default function Tasks() {
-  const [tasks, setTasks] = useState([]);
-  const [newTask, setInputValue] = useState("");
+  const taskMethods = useTasks();
 
   return (
-    <TasksContext.Provider value={{ tasks, setTasks, newTask, setInputValue }}>
-      <div className="task-input">
-        <TaskInput />
-        <AddTasksButton />
-      </div>
-      <div className="task-list">
-        {tasks.map((task) => (
-          <TaskItem key={task.id} task={task} />
-        ))}
+    <TasksContext.Provider value={taskMethods}>
+      <div className="tasks-container">
+        <div className="task-input">
+          <TaskInput />
+          <AddTasksButton />
+        </div>
+        <TaskList />
       </div>
     </TasksContext.Provider>
   );

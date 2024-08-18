@@ -1,8 +1,14 @@
 import { useContext } from "react";
 import { TasksContext } from "../../../Contexts/ComponentContexts";
 
-export function TaskInput() {
-  const { newTask, setInputValue } = useContext(TasksContext);
+export default function TaskInput() {
+  const { newTask, setInputValue, addTask } = useContext(TasksContext);
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      addTask();
+    }
+  };
+
   return (
     <input
       type="text"
@@ -12,6 +18,7 @@ export function TaskInput() {
       onChange={(e) => {
         setInputValue(e.target.value);
       }}
+      onKeyPress={handleKeyPress}
     />
   );
 }

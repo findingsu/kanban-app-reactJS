@@ -2,13 +2,10 @@ import React, { useContext } from "react";
 import { CardsContext } from "../../../Contexts/ComponentContexts";
 
 export default function DeleteCardButton({ cardId }) {
-  const { cards, setCards } = useContext(CardsContext);
-  const deleteCard = () => {
-    setCards(cards.filter((card) => card.id !== cardId));
-  };
+  const { deleteCard } = useContext(CardsContext);
 
   return (
-    <button onClick={deleteCard} className="delete-card-button">
+    <button onClick={() => deleteCard(cardId)} className="delete-card-button">
       x
     </button>
   );

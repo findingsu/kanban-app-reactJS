@@ -1,12 +1,17 @@
+import React from "react";
 import { Checkbox } from "./Checkbox";
 import DeleteTasksBtn from "../Buttons/DeleteTaskBtn";
 
-export function TaskItem({ task }) {
+export default function TaskItem({ task }) {
   return (
-    <li>
+    <li className={task.completed ? "completed" : ""}>
       <Checkbox task={task} />
-      <span>{task.name}</span>
-      <DeleteTasksBtn task={task} />
+      <span
+        style={{ textDecoration: task.completed ? "line-through" : "none" }}
+      >
+        {task.name}
+      </span>
+      <DeleteTasksBtn taskId={task.id} />
     </li>
   );
 }

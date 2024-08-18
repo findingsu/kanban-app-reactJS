@@ -1,22 +1,24 @@
-import React, { useState, useRef } from "react";
-import { ColumnsContext } from "../../Contexts/ComponentContexts.jsx";
-import AddColumnButton from "./Buttons/AddColumnBtn.jsx";
-// import HandleCards from "../Card/HandleCard.jsx";
-import DeleteColumnButton from "./Buttons/DeleteColumnBtn.jsx";
-// import CardList from "../Card/Components/CardList.jsx";
-import HandleCards from "../Card/HandleCard.jsx";
+import React from "react";
+import { ColumnsContext } from "../../Contexts/ComponentContexts";
+import { useColumns } from "./Hooks/UseColumns";
+import AddColumnButton from "./ColumnUI/AddColumnBtn";
+import DeleteColumnButton from "./ColumnUI/DeleteColumnBtn";
+import EditColumnTitle from "./ColumnUI/ColumnTitle";
+import HandleCards from "../Card/HandleCard";
 
 export default function Column() {
-  const [columns, setColumns] = useState([]);
-  const nextColumnId = useRef(1);
+  const columnMethods = useColumns();
 
   return (
-    <ColumnsContext.Provider value={{ columns, setColumns, nextColumnId }}>
+    <ColumnsContext.Provider value={columnMethods}>
       <div className="columns-container">
-        {columns.map((column) => (
+        {columnMethods.columns.map((column) => (
           <div key={column.id} className="column">
             <div className="column-header">
-              <h2>Column {column.id}</h2>
+              <EditColumnTitle
+                columnId={column.id}
+                initialTitle={column.title}
+              />
               <DeleteColumnButton columnId={column.id} />
             </div>
             <div className="cards-list">
@@ -24,7 +26,9 @@ export default function Column() {
             </div>
           </div>
         ))}
-        <AddColumnButton />
+        <div className="column-footer">
+          <AddColumnButton />
+        </div>
       </div>
     </ColumnsContext.Provider>
   );

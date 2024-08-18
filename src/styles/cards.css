@@ -8,12 +8,28 @@
   border-radius: 8px;
   cursor: pointer;
   box-sizing: border-box;
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 .card-title {
   display: flex;
+  align-content: center;
+  justify-content: center;
+  border: transparent;
 }
 
+input[name="card-title-input"] {
+  border: none;
+
+}
+
+input[name="card-title-input"]:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+  color: rgb(95, 89, 89);
+  /* font-style: italic; */
+}
 /* Task input styling */
 .task-input {
   display: flex;
@@ -28,6 +44,16 @@ input[name="task-input"] {
   border-radius: 5px;
   color: rgb(0, 0, 0);
   width: calc(100% - 25px);
+}
+
+input[name="task-input"] {
+  border: none;
+
+}
+
+input[name="task-input"]:focus {
+  border: none;
+  outline: none;
 }
 
 
