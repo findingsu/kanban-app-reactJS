@@ -33,6 +33,7 @@
   border-radius: 8px 8px 0 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .column-header h2 {

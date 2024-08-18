@@ -1,7 +1,6 @@
 import React, { useState, useContext, useCallback } from "react";
-import { CardsContext } from "../../Contexts/ComponentContexts";
-import { FiEdit } from "react-icons/fi"; // Importing the edit icon from Feather Icons
-
+import { CardsContext } from "../../../Contexts/ComponentContexts";
+import { FiEdit } from "react-icons/fi";
 export default function EditCardTitle({ cardId }) {
   const { cards, updateCardTitle } = useContext(CardsContext);
   const card = cards.find((c) => c.id === cardId);
@@ -38,8 +37,8 @@ export default function EditCardTitle({ cardId }) {
       onClick={() => setIsEditing(true)}
       style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
     >
+      <FiEdit style={{ marginRight: "10px", color: "#888" }} />
       <span>{card.title}</span>
-      <FiEdit style={{ marginLeft: "10px", color: "#888" }} />
     </div>
   );
 }

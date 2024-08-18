@@ -1,10 +1,8 @@
-import React from "react";
 import { useTasks } from "./UseTasks";
 import { TasksContext } from "../../Contexts/ComponentContexts";
-import TaskInput from "./TasksContainer/TaskInput";
-import TaskList from "./TasksContainer/TaskList";
-import { AddTasksButton } from "./Buttons/AddTaskBtn";
-
+import TaskInput from "./TasksUI/TaskInput";
+import TaskItem from "./TasksUI/TaskItem";
+import { AddTasksButton } from "./TasksUI/AddTaskBtn";
 export default function Tasks() {
   const taskMethods = useTasks();
 
@@ -15,7 +13,11 @@ export default function Tasks() {
           <TaskInput />
           <AddTasksButton />
         </div>
-        <TaskList />
+        <div className="task-list">
+          {taskMethods.tasks.map((task) => (
+            <TaskItem key={task.id} task={task} />
+          ))}
+        </div>
       </div>
     </TasksContext.Provider>
   );

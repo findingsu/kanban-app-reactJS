@@ -1,6 +1,5 @@
-import React from "react";
 import { Checkbox } from "./Checkbox";
-import DeleteTasksBtn from "../Buttons/DeleteTaskBtn";
+import DeleteTasksBtn from "./DeleteTaskBtn";
 
 export default function TaskItem({ task }) {
   return (

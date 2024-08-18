@@ -1,11 +1,11 @@
-import HandleColumns from "../Columns/Column.jsx";
+import Column from "../Columns/Column";
 
 import "../../styles/board.css";
 
 export default function Board() {
   return (
     <div className="kanban-board">
-      <HandleColumns />
+      <Column />
     </div>
   );
 }
