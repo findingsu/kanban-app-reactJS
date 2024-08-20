@@ -2,7 +2,7 @@ import { useTasks } from "./UseTasks";
 import { TasksContext } from "../../Contexts/ComponentContexts";
 import TaskInput from "./TasksUI/TaskInput";
 import TaskItem from "./TasksUI/TaskItem";
-import { AddTasksButton } from "./TasksUI/AddTaskBtn";
+// import { AddTasksButton } from "./TasksUI/AddTaskBtn";
 export default function Tasks() {
   const taskMethods = useTasks();
 
@@ -11,7 +11,7 @@ export default function Tasks() {
       <div className="tasks-container">
         <div className="task-input">
           <TaskInput />
-          <AddTasksButton />
+          {/* <AddTasksButton /> */}
         </div>
         <div className="task-list">
           {taskMethods.tasks.map((task) => (

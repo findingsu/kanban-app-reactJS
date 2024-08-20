@@ -1,6 +1,7 @@
 import React, { useState, useContext, useCallback } from "react";
 import { CardsContext } from "../../../Contexts/ComponentContexts";
 import { FiEdit } from "react-icons/fi";
+
 export default function EditCardTitle({ cardId }) {
   const { cards, updateCardTitle } = useContext(CardsContext);
   const card = cards.find((c) => c.id === cardId);

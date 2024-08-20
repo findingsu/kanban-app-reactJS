@@ -5,7 +5,7 @@ import "../../styles/cards.css";
 import CardItem from "./CardsUI/CardItem.jsx";
 import { useCards } from "./useCards.jsx";
 
-export default function Cards() {
+export default function Cards({ columnId }) {
   const cardMethods = useCards();
 
   return (
@@ -15,7 +15,7 @@ export default function Cards() {
           <CardItem key={card.id} cardId={card.id} />
         ))}
       </div>
-      <AddCardButton />
+      <AddCardButton columnId={columnId} />
     </CardsContext.Provider>
   );
 }

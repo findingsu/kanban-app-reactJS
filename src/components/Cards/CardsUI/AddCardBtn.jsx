@@ -1,11 +1,16 @@
 import React, { useContext } from "react";
-import { CardsContext } from "../../../Contexts/ComponentContexts";
+import {
+  CardsContext,
+  ColumnsContext,
+} from "../../../Contexts/ComponentContexts";
 
-export default function AddCardButton() {
+export default function AddCardButton({ columnId }) {
   const { addCard } = useContext(CardsContext);
-
+  const handleAddCard = () => {
+    addCard(columnId);
+  };
   return (
-    <button onClick={addCard} className="add-card-button">
+    <button onClick={handleAddCard} className="add-card-button">
       +
     </button>
   );

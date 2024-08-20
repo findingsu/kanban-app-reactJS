@@ -143,3 +143,6 @@ input[type="checkbox"] {
   height: 15px;
   margin-right: 10px;
 }
+.drag{
+  transform: translate(120px, 50%);
+}

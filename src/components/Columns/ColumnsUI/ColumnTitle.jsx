@@ -13,18 +13,11 @@ export default function EditColumnTitle({ columnId }) {
 
   const handleTitleSubmit = () => {
     setIsEditing(false);
-    if (
-      title.trim() !== "" &&
-      title !== column.title &&
-      column.id === columnId
-    ) {
-      updateColumnTitle(columnId, title);
-    } else {
-      setTitle(column.title);
-    }
-  };
 
-  if (!column) return null;
+    title.trim() !== "" && title !== column.title && column.id === columnId
+      ? updateColumnTitle(columnId, title)
+      : setTitle(column.title);
+  };
 
   if (isEditing) {
     return (
@@ -41,5 +34,13 @@ export default function EditColumnTitle({ columnId }) {
     );
   }
 
-  return <h2 onClick={() => setIsEditing(true)}>{column.title}</h2>;
+  return (
+    <h2
+      onClick={() => {
+        setIsEditing(true);
+      }}
+    >
+      {column.title}
+    </h2>
+  );
 }
