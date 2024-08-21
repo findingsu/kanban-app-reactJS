@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { ColumnsContext } from "../../../Contexts/ComponentContexts";
+import { FiEdit } from "react-icons/fi";
 
 export default function EditColumnTitle({ columnId }) {
   const { columns, updateColumnTitle } = useContext(ColumnsContext);
@@ -35,12 +36,16 @@ export default function EditColumnTitle({ columnId }) {
   }
 
   return (
-    <h2
-      onClick={() => {
-        setIsEditing(true);
-      }}
-    >
-      {column.title}
-    </h2>
+    <>
+      <FiEdit style={{ marginRight: "10px", color: "#888" }} />
+
+      <h2
+        onClick={() => {
+          setIsEditing(true);
+        }}
+      >
+        {column.title}
+      </h2>
+    </>
   );
 }

@@ -1,8 +1,5 @@
 import React, { useContext } from "react";
-import {
-  CardsContext,
-  ColumnsContext,
-} from "../../../Contexts/ComponentContexts";
+import { CardsContext } from "../../../Contexts/ComponentContexts";
 
 export default function AddCardButton({ columnId }) {
   const { addCard } = useContext(CardsContext);

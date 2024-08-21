@@ -1,50 +1,23 @@
 import { useState, useCallback } from "react";
-import { ColumnsContext } from "../../Contexts/ComponentContexts";
-import { useContext } from "react";
 
 export function useCards() {
   const [cards, setCards] = useState([]);
-  const { columns, setColumns } = useContext(ColumnsContext);
 
-  const addCard = useCallback(
-    (columnId) => {
-      const newCard = {
-        id:
-          cards.length === 0
-            ? 1
-            : Math.max(...cards.map((card) => card.id)) + 1,
-        title: `Card ${cards.length + 1}`,
-        isEdited: false,
-      };
-
-      // Add card to the cards state
-      setCards((prevCards) => [...prevCards, newCard]);
-
-      // Add card to the specified column
-      setColumns((prevColumns) =>
-        prevColumns.map((col) =>
-          col.id === columnId ? { ...col, cards: [...col.cards, newCard] } : col
-        )
-      );
-
-      // Log the cards of all columns
-      console.log(
-        "Cards in all columns:",
-        columns.map((col) => col.cards)
-      );
-      return newCard; // Return the new card if needed
-    },
-    [cards, setColumns]
-  );
+  const addCard = useCallback((columnId) => {
+    // Card Object
+    const newCard = {
+      id: crypto.randomUUID(),
+      columnId: columnId,
+      title: `Card ${cards.length + 1}`,
+      isEdited: false,
+    };
+    // Add new card to cards array
+    setCards((prevCards) => [...prevCards, newCard]);
+  });
 
   const deleteCard = useCallback((cardId) => {
-    setCards((prevCards) => {
-      const newCards = prevCards.filter((card) => card.id !== cardId);
-      return newCards.map((card, index) =>
-        card.isEdited ? card : { ...card, title: `Card ${index + 1}` }
-      );
-    });
-  }, []);
+    setCards((prevCards) => prevCards.filter((card) => card.id !== cardId));
+  });
 
   const updateCardTitle = useCallback((id, newTitle) => {
     setCards((prevCards) =>
@@ -54,5 +27,11 @@ export function useCards() {
     );
   }, []);
 
-  return { cards, addCard, deleteCard, updateCardTitle, setCards, setColumns };
+  return {
+    cards,
+    setCards,
+    addCard,
+    deleteCard,
+    updateCardTitle,
+  };
 }
