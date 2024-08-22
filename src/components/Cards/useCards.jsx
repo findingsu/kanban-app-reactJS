@@ -11,7 +11,7 @@ export function useCards() {
       title: `Card ${cards.length + 1}`,
       isEdited: false,
     };
-    // Add new card to cards array
+    // Add new card to array
     setCards((prevCards) => [...prevCards, newCard]);
   });
 

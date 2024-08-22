@@ -1,21 +1,18 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useCallback } from "react";
 
 export function useColumns() {
   const [columns, setColumns] = useState([]);
-  const nextColumnId = useRef(1);
 
   const addColumn = useCallback(() => {
     setColumns((prevColumns) => [
       ...prevColumns,
       {
-        id: nextColumnId.current,
+        id: crypto.randomUUID(),
         title: `Column ${prevColumns.length + 1}`,
         isEdited: false,
-        cards: [],
       },
     ]);
-    nextColumnId.current += 1;
-  }, []);
+  });
 
   const deleteColumn = useCallback((id) => {
     setColumns((prevColumns) => {
@@ -24,7 +21,7 @@ export function useColumns() {
         col.isEdited ? col : { ...col, title: `Column ${index + 1}` }
       );
     });
-  }, []);
+  });
 
   const updateColumnTitle = useCallback((id, newTitle) => {
     setColumns((prevColumns) =>
@@ -32,7 +29,7 @@ export function useColumns() {
         col.id === id ? { ...col, title: newTitle, isEdited: true } : col
       )
     );
-  }, []);
+  });
 
   return {
     columns,
