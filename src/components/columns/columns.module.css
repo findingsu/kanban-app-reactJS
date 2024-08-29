@@ -1,0 +1,80 @@
+
+.columnsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 16px;
+  height: 100vh;
+}
+
+.columnsList {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  overflow-x: auto;
+  max-height: 90vh;
+}
+
+.addButton {
+  cursor: pointer;
+  height: fit-content;
+  background-color: #43434346;
+  font-size: 1em;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.deleteButton{
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+}
+
+.addButton:hover {
+  background-color: #646cff;
+  border-color: #646cff;
+  cursor: pointer;
+}
+
+.columnItem {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  min-height: 100px;
+}
+
+.columnTitle {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+
+.columnTitleInput {
+  font-size: 17px;
+  color: rgb(95, 89, 89);
+  font-weight: 600;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.columnTitleInput:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.columnHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,11 +1,13 @@
+import { AppProvider } from "./context/context";
 import { Columns } from "./components/Columns";
-import "./App.css";
 
 function App() {
   return (
-    <>
-      <button>Add Column</button>
-    </>
+    <AppProvider>
+      <div className="app-container">
+        <Columns />
+      </div>
+    </AppProvider>
   );
 }
 
