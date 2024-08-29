@@ -1,9 +1,9 @@
 :root {
-  --primary-color: #0079bf;
-  --secondary-color: #5ba4cf;
-  --accent-color: #61bd4f;
-  --background-color: #f4f5f7;
-  --column-bg-color: #ffffff;
+  --primary-color: #0079bf6f;
+  --secondary-color: #578dad48;
+  --background-color: #aea2a2c0;
+  --column-bg-color: hsla(0, 30%, 96%, 0.918);
+  --card-color: #e9e0e0c1;
   --text-color: #333333;
   --shadow-color: rgba(0, 0, 0, 0.1);
   --border-radius: 8px;
@@ -14,7 +14,17 @@
 
 body {
   height: 100vh;
+  padding: 1rem;
   margin: 0;
   overflow: hidden;
   background-color: var(--background-color);
+}
+
+button {
+  background-color: #e0d9d9;
+  color:  #333333;
+}
+button:hover{
+  background-color: #665f5f;
+  color: white;
 }

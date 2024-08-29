@@ -12,6 +12,7 @@ import {
   AddButton,
   DeleteButton,
 } from "./columns.styles";
+import { Cards } from "../cards/cards";
 
 export const Columns = () => {
   const { columns, setColumns, editingId, setEditingId } = useAppContext();
@@ -55,12 +56,15 @@ export const Columns = () => {
                 x
               </DeleteButton>
             </ColumnHeader>
+            <Cards columnId={column.id} />
           </ColumnItem>
         ))}
+        {columns.length < 3 && (
+          <AddButton onClick={() => addColumn(setColumns)}>
+            Add Column
+          </AddButton>
+        )}
       </ColumnsList>
-      {columns.length < 3 && (
-        <AddButton onClick={() => addColumn(setColumns)}>Add Column</AddButton>
-      )}
     </ColumnsContainer>
   );
 };

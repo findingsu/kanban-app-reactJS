@@ -4,7 +4,6 @@ export function addColumn(setColumns) {
     {
       id: crypto.randomUUID(),
       title: `Column ${prev.length + 1}`,
-      isEdited: false,
     },
   ]);
 }
@@ -17,7 +16,7 @@ export function updateColumnTitle(id, newTitle, setColumns, setEditingId) {
   setColumns((prev) =>
     prev.map((column) =>
       column.id === id
-        ? { ...column, title: newTitle.trim() || column.title, isEdited: true }
+        ? { ...column, title: newTitle.trim() || column.title }
         : column
     )
   );
