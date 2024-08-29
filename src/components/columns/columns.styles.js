@@ -101,5 +101,6 @@ export const DeleteButton = styled.button`
 
   &:hover {
     color: #0079bf;
+    background-color: transparent;
   }
 `;
