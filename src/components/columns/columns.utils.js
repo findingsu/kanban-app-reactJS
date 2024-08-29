@@ -1,36 +1,25 @@
 export function addColumn(setColumns) {
-  setColumns((prevColumns) => [
-    ...prevColumns,
+  setColumns((prev) => [
+    ...prev,
     {
       id: crypto.randomUUID(),
-      title: `Column ${prevColumns.length + 1}`,
+      title: `Column ${prev.length + 1}`,
       isEdited: false,
     },
   ]);
 }
 
-// Utility function to delete a column by its ID
 export function deleteColumn(id, setColumns) {
-  setColumns((prevColumns) => prevColumns.filter((column) => column.id !== id));
+  setColumns((prev) => prev.filter((column) => column.id !== id));
 }
 
-// Utility function to update the title of a column
-export function handleUpdateColumnTitle({
-  editingId,
-  newTitle,
-  setColumns,
-  setEditingId,
-  setNewTitle,
-}) {
-  if (editingId && newTitle.trim()) {
-    setColumns((prevColumns) =>
-      prevColumns.map((column) =>
-        column.id === editingId
-          ? { ...column, title: newTitle, isEdited: true }
-          : column
-      )
-    );
-    setEditingId(null);
-    setNewTitle("");
-  }
+export function updateColumnTitle(id, newTitle, setColumns, setEditingId) {
+  setColumns((prev) =>
+    prev.map((column) =>
+      column.id === id
+        ? { ...column, title: newTitle.trim() || column.title, isEdited: true }
+        : column
+    )
+  );
+  setEditingId(null);
 }

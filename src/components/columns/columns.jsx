@@ -1,87 +1,66 @@
 import { useAppContext } from "../../context/context";
+
+import { addColumn, deleteColumn, updateColumnTitle } from "./columns.utils";
+
 import {
-  addColumn,
-  deleteColumn,
-  handleUpdateColumnTitle,
-} from "./columns.utils";
-import styles from "./columns.module.css";
+  ColumnsContainer,
+  ColumnsList,
+  ColumnItem,
+  ColumnHeader,
+  ColumnTitle,
+  ColumnTitleInput,
+  AddButton,
+  DeleteButton,
+} from "./columns.styles";
 
 export const Columns = () => {
-  const {
-    columns,
-    setColumns,
-    editingId,
-    setEditingId,
-    newTitle,
-    setNewTitle,
-  } = useAppContext();
+  const { columns, setColumns, editingId, setEditingId } = useAppContext();
 
   return (
-    <div className={styles.columnsContainer}>
-      <div className={styles.columnsList}>
+    <ColumnsContainer>
+      <ColumnsList>
         {columns.map((column) => (
-          <div key={column.id} className={styles.columnItem}>
-            <div className={styles.columnHeader}>
+          <ColumnItem key={column.id}>
+            <ColumnHeader>
               {editingId === column.id ? (
-                <div className={styles.editSection}>
-                  <input
-                    type="text"
-                    className={styles.columnTitleInput}
-                    placeholder={column.title}
-                    value={newTitle}
-                    onChange={(e) => setNewTitle(e.target.value)}
-                    onBlur={() =>
-                      handleUpdateColumnTitle({
-                        editingId,
-                        newTitle,
+                <ColumnTitleInput
+                  defaultValue=""
+                  placeholder={column.title}
+                  onBlur={(e) =>
+                    updateColumnTitle(
+                      column.id,
+                      e.target.value,
+                      setColumns,
+                      setEditingId
+                    )
+                  }
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                      updateColumnTitle(
+                        column.id,
+                        e.target.value,
                         setColumns,
-                        setEditingId,
-                        setNewTitle,
-                      })
+                        setEditingId
+                      );
                     }
-                    onKeyPress={(e) =>
-                      e.key === "Enter" &&
-                      handleUpdateColumnTitle({
-                        editingId,
-                        newTitle,
-                        setColumns,
-                        setEditingId,
-                        setNewTitle,
-                      })
-                    }
-                    autoFocus
-                  />
-                </div>
-              ) : (
-                <span
-                  className={styles.columnTitle}
-                  onClick={() => {
-                    setEditingId(column.id);
-                    setNewTitle(column.title);
-                    setNewTitle("");
                   }}
-                >
+                  autoFocus
+                />
+              ) : (
+                <ColumnTitle onClick={() => setEditingId(column.id)}>
                   {column.title}
-                </span>
+                </ColumnTitle>
               )}
-              <button
-                className={styles.deleteButton}
-                onClick={() => deleteColumn(column.id, setColumns)}
-              >
+              <DeleteButton onClick={() => deleteColumn(column.id, setColumns)}>
                 x
-              </button>
-            </div>
-          </div>
+              </DeleteButton>
+            </ColumnHeader>
+          </ColumnItem>
         ))}
-      </div>
-      {columns.length < 5 && (
-        <button
-          className={styles.addButton}
-          onClick={() => addColumn(setColumns)}
-        >
-          Add Column
-        </button>
+      </ColumnsList>
+      {columns.length < 3 && (
+        <AddButton onClick={() => addColumn(setColumns)}>Add Column</AddButton>
       )}
-    </div>
+    </ColumnsContainer>
   );
 };
