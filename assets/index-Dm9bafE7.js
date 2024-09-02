@@ -121,7 +121,7 @@ Error generating stack: `+o.message+`
     color: #0079bf;
     background-color: transparent;
   }
-`,Gm=(e,t)=>{t(n=>[...n,{id:crypto.randomUUID(),title:`Card ${n.length+1}`,columnId:e}])};function Xm(e,t){t(n=>n.filter(r=>r.id!==e))}function wa(e,t,n,r){n(l=>l.map(o=>o.id===e?{...o,title:t.trim()||o.title}:o)),r(null)}const Zm=(e,t,n,r)=>{n.trim()&&r(l=>[...l,{id:crypto.randomUUID(),title:n.trim(),cardId:e,columnId:t}])};function Jm(e,t,n,r){const l=t.findIndex(o=>o.id===e);n(o=>o.filter(i=>i.id!==e)),l>0?r(t[l-1].id):r(null)}function Sa(e,t,n,r){n(l=>l.map(o=>o.id===e?{...o,title:t.trim()||o.title}:o)),r(null)}function qm(e,t){t(n=>n.map(r=>r.id===e?{...r,checked:!r.checked}:r).sort((r,l)=>r.checked-l.checked))}const bm=G.div``,ka=G.div`
+`,Gm=(e,t)=>{t(n=>[...n,{id:crypto.randomUUID(),title:`Card ${n.length+1}`,columnId:e}])};function Xm(e,t){t(n=>n.filter(r=>r.id!==e))}function wa(e,t,n,r){n(l=>l.map(o=>o.id===e?{...o,title:t.trim()||o.title}:o)),r(null)}const Zm=(e,t,n,r)=>{n.trim()&&r(l=>[...l,{id:crypto.randomUUID(),title:n.trim(),cardId:e,columnId:t,checked:!1}])};function Jm(e,t,n,r){const l=t.findIndex(o=>o.id===e);n(o=>o.filter(i=>i.id!==e)),l>0?r(t[l-1].id):r(null)}function Sa(e,t,n,r){n(l=>l.map(o=>o.id===e?{...o,title:t.trim()||o.title}:o)),r(null)}function qm(e,t){t(n=>n.map(r=>r.id===e?{...r,checked:!r.checked}:r).sort((r,l)=>r.checked-l.checked))}const bm=G.div``,ka=G.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -132,24 +132,22 @@ Error generating stack: `+o.message+`
 `,t0=G.span`
   font-size: 0.9rem;
   cursor: pointer;
-  border-bottom: 1px solid transparent; /* Initially transparent */
-  transition: border-bottom-color 0.3s ease, color 0.3s ease;
-
+  transition: color 0.4s ease;
   &:hover {
-    border-bottom-color: grey; /* Changes the border color to create the underline effect */
-    color: grey;
+    color: gray;
   }
 `,xa=G.input`
-  font-size: 0.9rem;
   border: none;
   outline: none;
   box-shadow: none;
   background-color: transparent;
-  width: calc(100% - 30px);
+  width: 100%;
 
   &:focus {
     border: none;
     outline: none;
+    color: gray;
+
     background-color: transparent;
   }
 `;G.button`
