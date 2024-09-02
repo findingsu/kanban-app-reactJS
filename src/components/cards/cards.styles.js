@@ -1,9 +1,35 @@
 import styled from "styled-components";
 
 export const CardsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  flex-direction: Card;
   max-height: 85vh;
+`;
+
+export const CardTitle = styled.span`
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+  width: calc(100% - 30px);
+`;
+
+export const CardTitleInput = styled.input`
+  font-size: 0.9rem;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+  width: calc(100% - 30px); 
+
+}
+
+  &:focus {
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
 `;
 
 export const CardsList = styled.div`
@@ -13,7 +39,6 @@ export const CardsList = styled.div`
   overflow-x: auto; /* Add scrolling if needed */
 `;
 
-// Card item styling
 export const CardItem = styled.div`
   display: flex;
   align-items: center;
@@ -33,7 +58,6 @@ export const CardItem = styled.div`
   }
 `;
 
-// Delete button styling
 export const DeleteButton = styled.button`
   background: none;
   border: none;
@@ -48,7 +72,6 @@ export const DeleteButton = styled.button`
   }
 `;
 
-// Add card button styling
 export const AddButton = styled.button`
   font-weight: lighter;
   color: rgba(88, 88, 88, 0.906);
