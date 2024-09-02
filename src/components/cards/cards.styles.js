@@ -1,18 +1,20 @@
 import styled from "styled-components";
 
 export const CardsContainer = styled.div`
-  flex-direction: Card;
   max-height: 85vh;
 `;
 
 export const CardTitle = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 0.9rem;
   cursor: pointer;
   border: none;
   outline: none;
   box-shadow: none;
   background-color: transparent;
-  width: calc(100% - 30px);
+  width: 100%;
 `;
 
 export const CardTitleInput = styled.input`
@@ -21,7 +23,7 @@ export const CardTitleInput = styled.input`
   outline: none;
   box-shadow: none;
   background-color: transparent;
-  width: calc(100% - 30px); 
+  width: 100%;
 
 }
 
@@ -36,21 +38,17 @@ export const CardsList = styled.div`
   flex: 1;
   padding: 0.5rem 0;
   margin: 0;
-  overflow-x: auto; /* Add scrolling if needed */
+  overflow-x: auto;
 `;
 
 export const CardItem = styled.div`
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  font-size: 1rem;
-  margin-top: 0.5rem; /* Adjusted margin */
-  padding: 3rem 1.5rem; /* Adjusted padding for better spacing */
+  margin-top: 0.5rem;
+  padding: 0.5rem;
   background-color: var(--card-color);
   border: 1px solid #ddd;
   border-radius: 8px;
   cursor: pointer;
-  // box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.3s ease;
   height: fit-content;
   &:hover {
@@ -65,6 +63,7 @@ export const DeleteButton = styled.button`
   cursor: pointer;
   font-size: 1rem;
   transition: color 0.3s ease;
+  // margin-left: auto;
   &:hover {
     color: #c62828c3;
     font-weight: bold;

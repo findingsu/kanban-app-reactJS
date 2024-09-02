@@ -47,13 +47,13 @@ export const Cards = ({ columnId }) => {
                 autoFocus
               />
             ) : (
-              <CardTitle onClick={() => setEditingId(card.id)}>
+              <CardTitle>
                 {card.title}
+                <DeleteButton onClick={() => deleteCard(card.id, setCards)}>
+                  x
+                </DeleteButton>
               </CardTitle>
             )}
-            <DeleteButton onClick={() => deleteCard(card.id, setCards)}>
-              x
-            </DeleteButton>
             <Tasks cardId={card.id} columnId={columnId} />
           </CardItem>
         ))}
