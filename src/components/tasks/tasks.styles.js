@@ -17,26 +17,24 @@ export const Checkbox = styled.input`
 export const TaskTitle = styled.span`
   font-size: 0.9rem;
   cursor: pointer;
-  border-bottom: 1px solid transparent; /* Initially transparent */
-  transition: border-bottom-color 0.3s ease, color 0.3s ease;
-
+  transition: color 0.4s ease;
   &:hover {
-    border-bottom-color: grey; /* Changes the border color to create the underline effect */
-    color: grey;
+    color: gray;
   }
 `;
 
 export const TaskTitleInput = styled.input`
-  font-size: 0.9rem;
   border: none;
   outline: none;
   box-shadow: none;
   background-color: transparent;
-  width: calc(100% - 30px);
+  width: 100%;
 
   &:focus {
     border: none;
     outline: none;
+    color: gray;
+
     background-color: transparent;
   }
 `;

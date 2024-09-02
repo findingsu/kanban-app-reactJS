@@ -7,6 +7,7 @@ export const addTask = (cardId, columnId, newTask, setTasks) => {
         title: newTask.trim(),
         cardId,
         columnId,
+        checked: false,
       },
     ]);
   }
