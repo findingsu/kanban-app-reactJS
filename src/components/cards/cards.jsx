@@ -1,5 +1,6 @@
 import { useAppContext } from "../../context/context";
 import { addCard, deleteCard, updateCardTitle } from "./cards.utils";
+import { Tasks } from "../tasks";
 
 import {
   CardsContainer,
@@ -53,6 +54,7 @@ export const Cards = ({ columnId }) => {
             <DeleteButton onClick={() => deleteCard(card.id, setCards)}>
               x
             </DeleteButton>
+            <Tasks cardId={card.id} columnId={columnId} />
           </CardItem>
         ))}
       </CardsList>

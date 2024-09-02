@@ -5,6 +5,7 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [columns, setColumns] = useState([]);
   const [cards, setCards] = useState([]);
+  const [tasks, setTasks] = useState([]);
   const [editingId, setEditingId] = useState(null);
 
   const value = {
@@ -14,6 +15,8 @@ export const AppProvider = ({ children }) => {
     setEditingId,
     cards,
     setCards,
+    tasks,
+    setTasks,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
