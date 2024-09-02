@@ -12,7 +12,7 @@ import {
   AddButton,
   DeleteButton,
 } from "./columns.styles";
-import { Cards } from "../cards/cards";
+import { Cards } from "../cards";
 
 export const Columns = () => {
   const { columns, setColumns, editingId, setEditingId } = useAppContext();
