@@ -1,30 +1,30 @@
-import React, { useState } from "react";
 import { useAppContext } from "../../context/context";
-import { addTask, deleteTask, updateTaskTitle } from "./tasks.utils";
+import {
+  addTask,
+  deleteTask,
+  updateTaskTitle,
+  toggleTask,
+} from "./tasks.utils";
 import {
   TasksContainer,
   TasksList,
   TaskItem,
-  DeleteButton,
   TaskTitle,
   TaskTitleInput,
+  Checkbox,
 } from "./tasks.styles";
-import { Checkbox } from "./tasks.styles";
-import { toggleTask } from "./tasks.utils";
 
 export const Tasks = ({ cardId, columnId }) => {
   const { tasks, setTasks, editingId, setEditingId } = useAppContext();
-  const [newTaskTitle, setNewTaskTitle] = useState("");
 
-  // Filter tasks based on columnId and cardId
-  const tasksArray = tasks.filter(
-    (task) => task.columnId === columnId && task.cardId == cardId
+  const currentColumnTasks = tasks.filter(
+    (task) => task.columnId === columnId && task.cardId === cardId
   );
 
   return (
     <TasksContainer>
       <TasksList>
-        {tasksArray.map((task) => (
+        {currentColumnTasks.map((task) => (
           <TaskItem key={task.id}>
             <Checkbox
               type="checkbox"
@@ -33,6 +33,7 @@ export const Tasks = ({ cardId, columnId }) => {
             />
             {editingId === task.id ? (
               <TaskTitleInput
+                type="text"
                 defaultValue={task.title}
                 onBlur={(e) =>
                   updateTaskTitle(
@@ -42,38 +43,59 @@ export const Tasks = ({ cardId, columnId }) => {
                     setEditingId
                   )
                 }
-                onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                    updateTaskTitle(
-                      task.id,
-                      e.target.value,
-                      setTasks,
-                      setEditingId
-                    );
-                  }
+                onKeyDown={(e) => {
+                  e.key === "Enter"
+                    ? updateTaskTitle(
+                        task.id,
+                        e.target.value,
+                        setTasks,
+                        setEditingId
+                      )
+                    : e.key === "Backspace" && e.target.value === ""
+                    ? (currentColumnTasks.findIndex((t) => t.id === task.id) > 0
+                        ? setEditingId(
+                            currentColumnTasks[
+                              currentColumnTasks.findIndex(
+                                (t) => t.id === task.id
+                              ) - 1
+                            ].id
+                          )
+                        : setEditingId(null),
+                      deleteTask(
+                        task.id,
+                        currentColumnTasks,
+                        setTasks,
+                        setEditingId
+                      ))
+                    : null;
                 }}
                 autoFocus
               />
             ) : (
-              <TaskTitle>{task.title}</TaskTitle>
+              <TaskTitle onClick={() => setEditingId(task.id)}>
+                {task.title}
+              </TaskTitle>
             )}
-            <DeleteButton onClick={() => deleteTask(task.id, setTasks)}>
-              x
-            </DeleteButton>
           </TaskItem>
         ))}
+        <TaskItem>
+          <TaskTitleInput
+            type="text"
+            placeholder="Add a new task"
+            onKeyDown={(e) => {
+              e.key === "Enter"
+                ? (addTask(cardId, columnId, e.target.value, setTasks),
+                  (e.target.value = ""))
+                : e.key === "Backspace" && e.target.value === ""
+                ? currentColumnTasks.length > 0 &&
+                  setEditingId(
+                    currentColumnTasks[currentColumnTasks.length - 1].id
+                  )
+                : null;
+            }}
+          />
+        </TaskItem>
       </TasksList>
-      <TaskTitleInput
-        type="text"
-        placeholder="Add task..."
-        value={newTaskTitle}
-        onChange={(e) => setNewTaskTitle(e.target.value)}
-        onKeyPress={(e) => {
-          if (e.key === "Enter") {
-            addTask(cardId, columnId, newTaskTitle, setTasks, setNewTaskTitle);
-          }
-        }}
-      />
     </TasksContainer>
   );
 };

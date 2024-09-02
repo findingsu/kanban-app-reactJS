@@ -1,26 +1,28 @@
-// Adds a new task to the list
-export const addTask = (cardId, columnId, newTask, setTasks, clearInput) => {
+export const addTask = (cardId, columnId, newTask, setTasks) => {
   if (newTask.trim()) {
     setTasks((prevTasks) => [
       ...prevTasks,
       {
         id: crypto.randomUUID(),
         title: newTask.trim(),
-        cardId: cardId,
-        columnId: columnId,
-        checked: false,
+        cardId,
+        columnId,
       },
     ]);
-    clearInput(""); // Clear input field after adding
   }
 };
 
-// Deletes a task by its id
-export function deleteTask(id, setTasks) {
+export function deleteTask(id, tasksArray, setTasks, setEditingId) {
+  const currentTaskIndex = tasksArray.findIndex((task) => task.id === id);
   setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+
+  if (currentTaskIndex > 0) {
+    setEditingId(tasksArray[currentTaskIndex - 1].id);
+  } else {
+    setEditingId(null);
+  }
 }
 
-// Updates the title of an existing task
 export function updateTaskTitle(id, newTitle, setTasks, setEditingId) {
   setTasks((prevTasks) =>
     prevTasks.map((task) =>
